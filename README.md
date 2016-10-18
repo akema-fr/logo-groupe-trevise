@@ -1,5 +1,8 @@
 # Logo Groupe Trevise
 
+> ![logo Groupe Trevise couleur](./png/logo-trevise.horizontal.128.png)
+> ![logo Groupe Trevise noir & blanc](./png/logo-trevise.bw-horizontal.128.png)
+>
 > Regroupe Akema & Aprime
 
 ## Génération des logos
