@@ -4,7 +4,7 @@ function create_png_dir() {
     [[ ! -d png ]] && mkdir png/
 }
 
-path_to_png() {
+function path_to_png() {
     local svg="$1"
     local size="$2"
 
@@ -12,7 +12,7 @@ path_to_png() {
     echo $png
 }
 
-export_to_png() {
+function export_to_png() {
     local svg="$1"
     local png="$2"
     local size="$3"
@@ -23,18 +23,18 @@ export_to_png() {
     inkscape --without-gui "$dimension" --export-png="$png" --file="$svg"
 }
 
-path_to_monochrome() {
+function path_to_monochrome() {
     local png="$1"
 
     monochrome="${png/./.bw-}"
     echo $monochrome
 }
 
-create_monochrome() {
+function create_monochrome() {
     convert "$png" -monochrome "$monochrome"
 }
 
-generate-logo() {
+function generate-logo() {
     create_png_dir
     for svg in logo-trevise.*.svg; do
         sizes=( 64 128 256 512 1024 )
