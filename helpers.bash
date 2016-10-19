@@ -31,7 +31,7 @@ function path_to_monochrome() {
 }
 
 function create_monochrome() {
-    convert "$png" -monochrome "$monochrome"
+    convert "$png" -colorspace Gray "$monochrome"
 }
 
 function generate-logo() {
