@@ -25,10 +25,8 @@ export_to_png() {
 
 path_to_monochrome() {
     local png="$1"
-    local size="$2"
 
     monochrome="${png/./.bw-}"
-    monochrome="${monochrome/.png/.$size.png}"
     echo $monochrome
 }
 

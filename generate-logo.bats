@@ -64,7 +64,7 @@ teardown() {
 }
 
 @test "get path to monochrome PNG filepath from SVG filename" {
-  png="png/logo-trevise.horizontal.png"
+  png="png/logo-trevise.horizontal.32.png"
   run path_to_monochrome "$png" 32
 
   echo $output
