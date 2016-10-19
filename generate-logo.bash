@@ -20,7 +20,7 @@ function export_to_png() {
     [[ $png =~ vertical ]] && dimension=--export-height=$size
     [[ $png =~ horizontal ]] && dimension=--export-width=$size
 
-    inkscape --without-gui "$dimension" --export-png="$png" --file="$svg"
+    inkscape --without-gui $dimension --export-png="$png" --file="$svg"
 }
 
 function path_to_monochrome() {
