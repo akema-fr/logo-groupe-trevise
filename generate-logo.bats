@@ -74,13 +74,16 @@ teardown() {
 
 @test "should create a monochrome version" {
   create_png_dir
-  echo "<svg viewBox='0 0 5 5' height='5' width='5'><g/></svg>" > $TEST_DIR/file.svg
-  png="$(path_to_png "file.svg" 32)"
-  export_to_png "file.svg" "$png" 32
+  svg=file.svg
+  echo "<svg viewBox='0 0 10 10'><text y='0' x='0' style='fill:#000'><tspan y='8' x='2'>o</tspan></text></svg>" > $TEST_DIR/$svg
+  png="$(path_to_png "$svg" 32)"
 
+  export_to_png "$svg" "$png" 32
   monochrome=$(path_to_monochrome "$png" "$monochrome")
   run create_monochrome "$png" "$monochrome"
 
   [[ $status == "$NO_ERROR" ]]
   [[ -f $TEST_DIR/$monochrome ]]
+  run identify  -format "%[colorspace]" "$png"  #
+  [[ $output == 'Gray' ]]  # doesn't work with transparent background
 }

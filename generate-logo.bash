@@ -42,8 +42,8 @@ function generate-logo() {
             png=$(path_to_png "$svg" "$size")
             export_to_png "$svg" "$png" $size
 
-            # monochrome="$(path_to_monochrome "$png" "$size")"
-            # create_monochrome "$png" "$monochrome"
+            monochrome="$(path_to_monochrome "$png" "$size")"
+            create_monochrome "$png" "$monochrome"
         done
     done
 }
