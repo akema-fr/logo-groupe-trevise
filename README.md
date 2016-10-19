@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/akema-fr/logo-groupe-trevise.svg?branch=master)](https://travis-ci.org/akema-fr/logo-groupe-trevise)
+
+
 # Logo Groupe Trevise
 
 > ![logo Groupe Trevise couleur](./png/logo-trevise.horizontal.128.png)
