@@ -1,13 +1,53 @@
 #!/usr/bin/env bash
 
-[[ ! -d png ]] && mkdir png/
+function create_png_dir() {
+    [[ ! -d png ]] && mkdir png/
+}
 
-for svg in logo-trevise.*.svg; do
-  echo $svg $png
-  sizes=( 64 128 256 512 1024 )
-  for size in "${sizes[@]}"; do
+path_to_png() {
+    local svg="$1"
+    local size="$2"
+
     png="png/${svg//.svg/.$size.png}"
-    [[ $png =~ vertical ]] && inkscape --without-gui --export-height=$size --export-png="$png" --file="$svg"
-    [[ $png =~ horizontal ]] && inkscape --without-gui --export-width=$size --export-png="$png" --file="$svg"
-  done
-done
+    echo $png
+}
+
+export_to_png() {
+    local svg="$1"
+    local png="$2"
+    local size="$3"
+
+    [[ $png =~ vertical ]] && dimension=--export-height=$size
+    [[ $png =~ horizontal ]] && dimension=--export-width=$size
+
+    inkscape --without-gui "$dimension" --export-png="$png" --file="$svg"
+}
+
+path_to_monochrome() {
+    local png="$1"
+    local size="$2"
+
+    monochrome="${png/./.bw-}"
+    monochrome="${monochrome/.png/.$size.png}"
+    echo $monochrome
+}
+
+create_monochrome() {
+    convert "$png" -monochrome "$monochrome"
+}
+
+generate-logo() {
+    create_png_dir
+    for svg in logo-trevise.*.svg; do
+        sizes=( 64 128 256 512 1024 )
+        for size in "${sizes[@]}"; do
+            png=$(path_to_png "$svg" "$size")
+            export_to_png "$svg" "$png" $size
+
+            # monochrome="$(path_to_monochrome "$png" "$size")"
+            # create_monochrome "$png" "$monochrome"
+        done
+    done
+}
+
+# generate-logo
